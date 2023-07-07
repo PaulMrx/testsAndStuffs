@@ -9,11 +9,11 @@ class Hero:
         self.energy = energy
 
     def __str__(self):
-        return "Hero"
+        return f"{__class__.__name__}"
 
     def attack(self, someone):
         """Deals simple damage and reduces energy"""
-        print("Hero attacks!")
+        print(f"Hero attacks and deals {self.damage} to {someone}!")
         someone.get_damage(self.damage)
         self.energy = int(self.energy * 0.5)
 
@@ -31,11 +31,11 @@ class Monster:
         self.energy = energy
 
     def __str__(self):
-        return "Monster"
+        return f"{__class__.__name__}"
 
     def attack(self, someone):
         """Deals simple damage and reduces energy"""
-        print("Monster attacks!")
+        print(f"Monster attacks and deals {self.damage} to {someone}!")
         someone.get_damage(self.damage)
         self.energy = int(self.energy * 0.5)
 
@@ -52,13 +52,13 @@ class Scorpion(Monster):
         self.poison_damage = poison_damage
 
     def __str__(self):
-        return "Scorpion"
+        return f"{__class__.__name__}"
 
     def attack(self, someone):
         """Deals poison damage instead of simple damage and reduces energy"""
         someone.get_damage(self.poison_damage)
         self.energy = int(self.energy * 0.5)
-        print(f"Scorpion dealt {self.poison_damage} poison damages to {someone}!")
+        print(f"Scorpion attacks and deals {self.poison_damage} poison damages to {someone}!")
 
 
 # Create creatures
@@ -73,14 +73,19 @@ scorpion = Scorpion(poison_damage=80, health=70, energy=36)
 print(f"Monster's stats are: health({monster.health}), energy({monster.energy})")
 print(f"Hero's stats are: health({hero.health}), energy({hero.energy})")
 print(f"Scorpion's stats are: health({scorpion.health}), energy({scorpion.energy})")
+print("")
 
 # Make them fight
 hero.attack(monster)
 monster.attack(hero)
 hero.attack(scorpion)
 scorpion.attack(hero)
+print("")
 
 # Print final stats
 print(f"Monster's stats are: health({monster.health}), energy({monster.energy})")
 print(f"Hero's stats are: health({hero.health}), energy({hero.energy})")
 print(f"Scorpion's stats are: health({scorpion.health}), energy({scorpion.energy})")
+
+# print("")
+# help(Scorpion)
