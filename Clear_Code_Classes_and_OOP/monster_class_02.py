@@ -11,9 +11,8 @@ class Monster:
 class Attacks:
     """Create attacks class"""
 
-    def __init__(self, num):
+    def __init__(self):
         print("Attacks created")
-        self.num = 
 
     def bite(self, num):
         """bite function"""
