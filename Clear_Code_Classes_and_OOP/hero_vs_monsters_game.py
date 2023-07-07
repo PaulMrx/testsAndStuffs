@@ -1,28 +1,7 @@
 """Hero vs Monsters game"""
 
-class Monster:
-    """Create Monster"""
-
-    def __init__(self, damage, health, energy):
-        self.damage = damage
-        self.health = health
-        self.energy = energy
-
-    def __str__(self):
-        return "Monster"
-
-    def attack(self, someone):
-        """create attack"""
-        print("Monster attacks!")
-        someone.get_damage(self.damage)
-        self.energy = int(self.energy * 0.5)
-
-    def get_damage(self, amount):
-        """remove amount from health"""
-        self.health -= amount
-
 class Hero:
-    """Create Hero"""
+    """Create generic hero"""
 
     def __init__(self, damage, health, energy):
         self.damage = damage
@@ -33,7 +12,7 @@ class Hero:
         return "Hero"
 
     def attack(self, someone):
-        """create attack"""
+        """Deals simple damage and reduces energy"""
         print("Hero attacks!")
         someone.get_damage(self.damage)
         self.energy = int(self.energy * 0.5)
@@ -42,8 +21,32 @@ class Hero:
         """remove amount from health"""
         self.health -= amount
 
+
+class Monster:
+    """Create generic monster"""
+
+    def __init__(self, damage, health, energy):
+        self.damage = damage
+        self.health = health
+        self.energy = energy
+
+    def __str__(self):
+        return "Monster"
+
+    def attack(self, someone):
+        """Deals simple damage and reduces energy"""
+        print("Monster attacks!")
+        someone.get_damage(self.damage)
+        self.energy = int(self.energy * 0.5)
+
+    def get_damage(self, amount):
+        """remove amount from health"""
+        self.health -= amount
+
+
 class Scorpion(Monster):
-    """Create scorpion"""
+    """Create scorpion monster"""
+
     def __init__(self, poison_damage, health, energy):
         super().__init__(damage=poison_damage, health=health, energy=energy)
         self.poison_damage = poison_damage
@@ -52,7 +55,7 @@ class Scorpion(Monster):
         return "Scorpion"
 
     def attack(self, someone):
-        """show poison damage"""
+        """Deals poison damage instead of simple damage and reduces energy"""
         someone.get_damage(self.poison_damage)
         self.energy = int(self.energy * 0.5)
         print(f"Scorpion dealt {self.poison_damage} poison damages to {someone}!")
@@ -71,7 +74,7 @@ print(f"Monster's stats are: health({monster.health}), energy({monster.energy})"
 print(f"Hero's stats are: health({hero.health}), energy({hero.energy})")
 print(f"Scorpion's stats are: health({scorpion.health}), energy({scorpion.energy})")
 
-# Fight happens
+# Make them fight
 hero.attack(monster)
 monster.attack(hero)
 hero.attack(scorpion)
